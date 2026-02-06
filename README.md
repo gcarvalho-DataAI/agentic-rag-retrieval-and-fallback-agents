@@ -33,7 +33,7 @@ uv run game-research agent "When was Gran Turismo released?" --collection game-r
 - `src/game_research/models/` Pydantic models
 - `src/game_research/services/` RAG, tools, state machine, vector DB
 - `data/games/` game dataset (JSON)
-- `data/chromadb/` persistent ChromaDB
+- `data/chromadb/` persistent ChromaDB (generated locally; not tracked in git)
 - `examples/` runnable demos
 - `docs/` product docs
 - `tests/` unit tests
@@ -43,6 +43,15 @@ uv run game-research agent "When was Gran Turismo released?" --collection game-r
 ```bash
 uv sync --group dev
 uv run --group dev pytest -q
+```
+
+## Load the Vector Database
+
+The ChromaDB files are not committed. To rebuild the local vector database:
+
+```bash
+export OPENAI_API_KEY="..."
+uv run game-research index --data data/games --store data/chromadb --collection game-research
 ```
 
 ## License
