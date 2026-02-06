@@ -1,0 +1,35 @@
+[project]
+name = "game-research-agent"
+version = "0.1.0"
+description = "Game Research Agent with RAG and web fallback"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE.md" }
+authors = [{ name = "Your Name" }]
+dependencies = [
+  "chromadb",
+  "pdfplumber",
+  "openai",
+  "pydantic>=2.6",
+  "python-dotenv",
+  "tavily-python",
+]
+
+[project.scripts]
+game-research = "game_research.cli:main"
+
+[dependency-groups]
+dev = [
+  "pytest>=8.0",
+]
+
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/game_research"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
